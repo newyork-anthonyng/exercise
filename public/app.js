@@ -63,9 +63,22 @@ var DecipherParser = (function() {
     return myDailyInfo;
   }
 
+  let getSummaryInfo = function(data) {
+    const mySummary = {};
+    const profit = data['profit']
+    mySummary['profit_this_year'] = profit['this_year'];
+    mySummary['profit_all_time'] = profit['all_time'];
+    mySummary['profit_this_month'] = profit['this_month'];
+    mySummary['fees'] = data['fees']['yearly_fund_expenses'];
+    mySummary['cash_on_hand'] = data['cash_on_hand'];
+
+    return mySummary;
+  }
+
   return {
     requestInfo: requestInfo,
     getPositionInfo: getPositionInfo,
-    getDailyInfo: getDailyInfo
+    getDailyInfo: getDailyInfo,
+    getSummaryInfo: getSummaryInfo
   };
 })();

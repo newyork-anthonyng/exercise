@@ -1,9 +1,3 @@
-describe('Test', function() {
-  it('should be true', function() {
-    expect(true).toBe(true);
-  });
-});
-
 describe('DecipherParser', function() {
 
   describe('#requestInfo', function() {
@@ -117,8 +111,47 @@ describe('DecipherParser', function() {
     });
 
     it('should have pnl_unrealized, pnl_realized, and date info for each date', function() {
-      expect(Object.keys(dailyInfo['data'][0])).toEqual(['pnl_unrealized', 'pnl_realized', 'date']);
+      var resultKeys = Object.keys(dailyInfo['data'][0]);
+      var realKeys = ['pnl_unrealized', 'pnl_realized', 'date'];
+
+      expect(resultKeys.length).toEqual(realKeys.length);
+
+      for(var i = 0; i < realKeys.length; i++) {
+        var currentKey = realKeys[i];
+
+        expect(resultKeys.indexOf(currentKey)).not.toEqual(-1);
+      }
     });
   });
 
+  describe('#getSummaryInfo', function() {
+    var summaryInfo;
+
+    beforeEach(function() {
+      var fakeData = {
+        profit: { this_year: 300, all_time: 4000, this_month: -10 },
+        fees: { yearly_fund_expenses: 100 },
+        cash_on_hand: 12000
+      };
+
+      summaryInfo = DecipherParser.getSummaryInfo(fakeData);
+    });
+
+    it('should return an object of user information', function() {
+      expect(typeof summaryInfo).toEqual('object');
+    });
+
+    it('should contain keys for user information', function() {
+      var resultKeys = Object.keys(summaryInfo);
+      var realKeys = ['profit_this_year', 'profit_all_time', 'profit_this_year', 'fees', 'cash_on_hand']
+
+      expect(resultKeys.length).toEqual(realKeys.length);
+
+      for(var i = 0; i < realKeys.length; i++) {
+        var currentKey = realKeys[i];
+
+        expect(resultKeys.indexOf(currentKey)).not.toEqual(-1);
+      };
+    });
+  });
 });
