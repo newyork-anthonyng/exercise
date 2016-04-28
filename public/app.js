@@ -1,13 +1,19 @@
 'use strict';
 
 var DecipherParser = (function() {
-  var test = 'Hello World';
 
-  var testFunction = function() {
-    return test;
+  let requestInfo = function(callback) {
+    $.ajax({
+      url: '/decipher/test',
+      method: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        callback(data);
+      }
+    });
   }
 
   return {
-    test: testFunction
+    requestInfo: requestInfo
   };
 })();

@@ -9,5 +9,15 @@
 </head>
 <body>
   <h1>Exercise</h1>
+  <button onclick="test();">Click me</button>
+
+  <script type="application/javascript" src="./app.js"></script>
+  <script type="application/javascript">
+    function test() {
+      DecipherParser.requestInfo(function(data) {
+        console.log(data);
+      });
+    }
+  </script>
 </body>
 </html>
