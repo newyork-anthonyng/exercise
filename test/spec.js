@@ -29,8 +29,9 @@ describe('DecipherParser', function() {
   });
 
   describe('#getPositionInfo', function() {
+    var positionInfo;
 
-    it('should return AcctName, Security, and Value', function() {
+    beforeEach(function() {
       var fakeData = [
         {
           gains: { unrealized_longterm: 123, unrealized_shortterm: 234, realized_shortterm: 345, realized_longterm: 456 },
@@ -47,7 +48,16 @@ describe('DecipherParser', function() {
           security: { ticker: 'FB', name: 'Facebook' }
         },
       ];
-      var positionInfo = DecipherParser.getPositionInfo(fakeData);
+      positionInfo = DecipherParser.getPositionInfo(fakeData);
+
+    });
+
+    it('should return an array', function() {
+      expect(Array.isArray(positionInfo)).toBe(true);
+      expect(positionInfo.length).toEqual(2);
+    });
+
+    it('should calculate info for each position', function() {
       var aapl = {
         unrealized: 357,
         realized: 801,
@@ -71,11 +81,44 @@ describe('DecipherParser', function() {
         ticker: 'FB'
       };
 
-      expect(positionInfo.length).toEqual(2);
       expect(positionInfo[0]).toEqual(aapl);
       expect(positionInfo[1]).toEqual(fb);
     });
+  });
 
+  describe('#getDailyInfo', function() {
+    var dailyInfo;
+
+    beforeEach(function() {
+      var fakeData = [
+        { pnl_unrealized: -123, pnl_realized: 0, date: '2013-01-08' },
+        { pnl_unrealized: 0, pnl_realized: 1, date: '2013-01-09' },
+        { pnl_unrealized: 0, pnl_realized: 12, date: '2013-01-10' },
+        { pnl_unrealized: 0, pnl_realized: 13, date: '2013-01-11' },
+        { pnl_unrealized: 0, pnl_realized: 14, date: '2013-01-12' },
+        { pnl_unrealized: 0, pnl_realized: 15, date: '2013-01-13' },
+        { pnl_unrealized: 0, pnl_realized: 16, date: '2013-01-14' },
+        { pnl_unrealized: 0, pnl_realized: 17, date: '2013-01-15' },
+      ];
+      dailyInfo = DecipherParser.getDailyInfo(fakeData);
+    });
+
+    it('should return an array of daily information', function() {
+      expect(Array.isArray(dailyInfo['data'])).toBe(true);
+      expect(dailyInfo['data'].length).toEqual(8);
+    });
+
+    it('should have total_pnl_unrealized', function() {
+      expect(dailyInfo['total_pnl_unrealized']).toEqual(-123);
+    });
+
+    it('should have total_pnl_realized', function() {
+      expect(dailyInfo['total_pnl_realized']).toEqual(88);
+    });
+
+    it('should have pnl_unrealized, pnl_realized, and date info for each date', function() {
+      expect(Object.keys(dailyInfo['data'][0])).toEqual(['pnl_unrealized', 'pnl_realized', 'date']);
+    });
   });
 
 });
