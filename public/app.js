@@ -10,12 +10,16 @@ var DecipherDom = (function() {
     let $profitAllTime = $('#summary_profit_all_time td')[1];
     let $fees = $('#summary_fees td')[1];
 
-    $($cash).text(Math.round(data['cash_on_hand']));
-    $($profitMonth).text(Math.round(data['profit_this_month']));
-    $($profitYear).text(Math.round(data['profit_this_year']));
-    $($profitAllTime).text(Math.round(data['profit_all_time']));
-    $($fees).text(Math.round(data['fees']));
+    $($cash).text(formatNumber(data['cash_on_hand']));
+    $($profitMonth).text(formatNumber(data['profit_this_month']));
+    $($profitYear).text(formatNumber(data['profit_this_year']));
+    $($profitAllTime).text(formatNumber(data['profit_all_time']));
+    $($fees).text(formatNumber(data['fees']));
   }
+
+	function formatNumber(number) {
+		return Math.round(number).toLocaleString();
+	}
 
   let createTimelineComponent = function(data) {
     // populate Date
@@ -81,13 +85,13 @@ var DecipherDom = (function() {
       let currentPosition = data[i];
 
       let newRow = '<tr><td>' + currentPosition['name'] + ' (' + currentPosition['ticker'] + ')</td>' +
-        '<td>' + Math.round(currentPosition['shares']) + '</td>' +
-        '<td>' + Math.round(currentPosition['value']) + '</td>' +
-        '<td>' + Math.round(currentPosition['realized']) + '</td>' +
-        '<td>' + Math.round(currentPosition['dividends']) + '</td>' +
-        '<td>' + Math.round(currentPosition['unrealized']) + '</td>' +
-        '<td>' + Math.round(currentPosition['shortterm']) + '</td>' +
-        '<td>' + Math.round(currentPosition['longterm']) + '</td>' +
+        '<td>' + formatNumber(currentPosition['shares']) + '</td>' +
+        '<td>' + formatNumber(currentPosition['value']) + '</td>' +
+        '<td>' + formatNumber(currentPosition['realized']) + '</td>' +
+        '<td>' + formatNumber(currentPosition['dividends']) + '</td>' +
+        '<td>' + formatNumber(currentPosition['unrealized']) + '</td>' +
+        '<td>' + formatNumber(currentPosition['shortterm']) + '</td>' +
+        '<td>' + formatNumber(currentPosition['longterm']) + '</td>' +
         '</tr>';
 
       $($tbody).append(newRow);
