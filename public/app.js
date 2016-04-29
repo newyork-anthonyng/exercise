@@ -47,6 +47,8 @@ var DecipherParser = (function() {
     myDailyInfo['total_pnl_unrealized'] = 0;
     myDailyInfo['total_pnl_realized'] = 0;
 
+    myDailyInfo['date_range'] = { beginning: undefined, end: undefined };
+
     for(let i = 0; i < dailyInfo.length; i++) {
       const currentDay = dailyInfo[i];
       const currentDailyInfo = {};
@@ -58,9 +60,26 @@ var DecipherParser = (function() {
       myDailyInfo['total_pnl_unrealized'] += currentDailyInfo['pnl_unrealized'];
       myDailyInfo['total_pnl_realized'] += currentDailyInfo['pnl_realized'];
       myDailyInfo['data'].push(currentDailyInfo);
+
+      if(myDailyInfo['date_range']['beginning'] === undefined) {
+        myDailyInfo['date_range']['beginning'] = currentDailyInfo['date'];
+        myDailyInfo['date_range']['end'] = currentDailyInfo['date'];
+      }
+
+      let dateIsEarlier = isDateIsGreater(myDailyInfo['date_range']['beginning'], currentDailyInfo['date']);
+      let dateIsLater = isDateIsGreater(currentDailyInfo['date'], myDailyInfo['date_range']['end']);
+      if(dateIsEarlier) {
+        myDailyInfo['date_range']['beginning'] = currentDailyInfo['date'];
+      } else if(dateIsLater) {
+        myDailyInfo['date_range']['end'] = currentDailyInfo['date'];
+      }
     }
 
     return myDailyInfo;
+  }
+
+  function isDateIsGreater(first, second) {
+    return new Date(first) > new Date(second);
   }
 
   let getSummaryInfo = function(data) {

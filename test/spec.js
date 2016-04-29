@@ -91,7 +91,7 @@ describe('DecipherParser', function() {
         { pnl_unrealized: 0, pnl_realized: 13, date: '2013-01-11' },
         { pnl_unrealized: 0, pnl_realized: 14, date: '2013-01-12' },
         { pnl_unrealized: 0, pnl_realized: 15, date: '2013-01-13' },
-        { pnl_unrealized: 0, pnl_realized: 16, date: '2013-01-14' },
+        { pnl_unrealized: 0, pnl_realized: 16, date: '2013-01-19' },
         { pnl_unrealized: 0, pnl_realized: 17, date: '2013-01-15' },
       ];
       dailyInfo = DecipherParser.getDailyInfo(fakeData);
@@ -108,6 +108,14 @@ describe('DecipherParser', function() {
 
     it('should have total_pnl_realized', function() {
       expect(dailyInfo['total_pnl_realized']).toEqual(88);
+    });
+
+    it('should have date_range', function() {
+      var dateRange = {
+        beginning: '2013-01-08',
+        end: '2013-01-19'
+      };
+      expect(dailyInfo['date_range']).toEqual(dateRange);
     });
 
     it('should have pnl_unrealized, pnl_realized, and date info for each date', function() {
