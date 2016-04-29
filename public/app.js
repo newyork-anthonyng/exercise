@@ -76,6 +76,22 @@ var DecipherDom = (function() {
     });
 
     // populate Table
+    let $tbody = $('.positions tbody');
+    for(let i = 0; i < data.length; i++) {
+      let currentPosition = data[i];
+
+      let newRow = '<tr><td>' + currentPosition['name'] + ' (' + currentPosition['ticker'] + ')</td>' +
+        '<td>' + Math.round(currentPosition['shares']) + '</td>' +
+        '<td>' + Math.round(currentPosition['value']) + '</td>' +
+        '<td>' + Math.round(currentPosition['realized']) + '</td>' +
+        '<td>' + Math.round(currentPosition['dividends']) + '</td>' +
+        '<td>' + Math.round(currentPosition['unrealized']) + '</td>' +
+        '<td>' + Math.round(currentPosition['shortterm']) + '</td>' +
+        '<td>' + Math.round(currentPosition['longterm']) + '</td>' +
+        '</tr>';
+
+      $($tbody).append(newRow);
+    }
   }
 
   return {
