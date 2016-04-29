@@ -88,7 +88,7 @@ var DecipherDom = (function() {
     let $chart = $('#positionsChart');
     let ticker = getArrayOfKey(data, 'ticker');
     let value = getArrayOfKey(data, 'value');
-
+    let colors = getChartColors(data.length);
 
     let myChart = new Chart($chart, {
       type: 'pie',
@@ -97,9 +97,7 @@ var DecipherDom = (function() {
         datasets: [
           {
             data: value,
-            backgroundColor: [
-              '#567', '#567', '#567', '#567'
-            ]
+            backgroundColor: colors
           }
         ]
       }
@@ -122,6 +120,23 @@ var DecipherDom = (function() {
 
       $($tbody).append(newRow);
     }
+  }
+
+  function getChartColors(number) {
+    let myColors = [];
+
+    for(let i = 0; i < number; i++) {
+      myColors.push(generateRandomColor(255));
+    }
+    return myColors;
+  }
+
+  function generateRandomColor(range) {
+    let rand1 = Math.floor(Math.random() * range);
+    let rand2 = Math.floor(Math.random() * range);
+    let rand3 = Math.floor(Math.random() * range);
+
+    return 'rgb(' + rand1 + ',' + rand2 +',' + rand3 + ')';
   }
 
   return {

@@ -36,3 +36,7 @@ th, td {
 .container.positions div {
 	margin: 5em auto;
 }
+
+.container.positions {
+	max-width: 1000px;
+}
