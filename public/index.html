@@ -8,16 +8,50 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 <body>
-  <h1>Exercise</h1>
-  <button onclick="test();">Click me</button>
+  <!-- Account Summary -->
+  <div class="container summary">
+    <h1>Account Summary</h1>
+    <table></table>
+  </div>
 
+  <!-- Timeline -->
+  <div class="container timeline">
+    <h1>Timeline</h1>
+    <h2 id="date">Date Range</h2>
+
+    <div style="width: 500px; height: 500px;">
+      <canvas id="timelineChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Positions -->
+  <div class="container positions">
+    <h1>Positions</h1>
+
+    <div style="width: 500px; height: 500px;">
+      <canvas id="positionsChart"></canvas>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Shares</th>
+          <th>Value</th>
+          <th>Realized</th>
+          <th>Dividends</th>
+          <th>Unrealized</th>
+          <th>Short Term</th>
+          <th>Long Term</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+  <script type="application/javascript" src="./libraries/chart.js"></script>
   <script type="application/javascript" src="./app.js"></script>
   <script type="application/javascript">
-    function test() {
-      DecipherParser.requestInfo(function(data) {
-        console.log(data);
-      });
-    }
+    // DecipherParser
   </script>
 </body>
 </html>
