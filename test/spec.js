@@ -151,7 +151,7 @@ describe('DecipherParser', function() {
 
     it('should contain keys for user information', function() {
       var resultKeys = Object.keys(summaryInfo);
-      var realKeys = ['profit_this_year', 'profit_all_time', 'profit_this_year', 'fees', 'cash_on_hand']
+      var realKeys = ['profit_this_month', 'profit_all_time', 'profit_this_year', 'fees', 'cash_on_hand']
 
       expect(resultKeys.length).toEqual(realKeys.length);
 
