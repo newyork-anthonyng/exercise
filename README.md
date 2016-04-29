@@ -6,3 +6,6 @@ Exercise
   * Node.js
   * Express
   * jQuery
+
+## Wireframe
+![Wireframe](./public/assets/Wireframe.png "Wireframe")
