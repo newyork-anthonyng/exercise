@@ -72,7 +72,15 @@
   <script type="application/javascript" src="./libraries/chart.js"></script>
   <script type="application/javascript" src="./app.js"></script>
   <script type="application/javascript">
-    // DecipherParser
+    DecipherParser.requestInfo(function(data) {
+      var summaryInfo = DecipherParser.getSummaryInfo(data);
+      var dailyInfo = DecipherParser.getDailyInfo(data['timeseries']);
+      var positionInfo = DecipherParser.getPositionInfo(data['account_positions'][0]['positions']);
+
+      DecipherDom.createSummaryComponent(summaryInfo);
+      DecipherDom.createTimelineComponent(dailyInfo);
+      //DecipherDom.createPositionComponent(positionInfo);
+    });
   </script>
 </body>
 </html>

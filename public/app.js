@@ -1,5 +1,64 @@
 'use strict';
 
+var DecipherDom = (function() {
+  let createSummaryComponent = function(data) {
+    if(!data) return false;
+
+    let $cash = $('#summary_cash td')[1];
+    let $profitMonth = $('#summary_profit_month td')[1];
+    let $profitYear = $('#summary_profit_year td')[1];
+    let $profitAllTime = $('#summary_profit_all_time td')[1];
+    let $fees = $('#summary_fees td')[1];
+
+    $($cash).text(Math.round(data['cash_on_hand']));
+    $($profitMonth).text(Math.round(data['profit_this_month']));
+    $($profitYear).text(Math.round(data['profit_this_year']));
+    $($profitAllTime).text(Math.round(data['profit_all_time']));
+    $($fees).text(Math.round(data['fees']));
+  }
+
+  let createTimelineComponent = function(data) {
+    // populate Date
+    let $date = $('#date');
+    const dateText = data['date_range']['beginning'] + ' to ' + data['date_range']['end'];
+    $date.text(dateText);
+
+    // populate Chart
+    let $chart = $('#timelineChart');
+    let dates = getArrayOfKey(data['data'], 'date');
+    let realized = getArrayOfKey(data['data'], 'pnl_realized');
+    let unrealized = getArrayOfKey(data['data'], 'pnl_unrealized');
+
+    let myChart = new Chart($chart, {
+      type: 'line',
+      data: {
+        labels: dates,
+        datasets: [
+          {
+            label: 'Realized',
+            data: realized
+          },
+          {
+            label: 'Unrealized',
+            data: unrealized
+          }
+        ]
+      }
+    });
+  }
+
+  function getArrayOfKey(array, key) {
+    return array.map(function(obj) {
+      return obj[key];
+    });
+  }
+
+  return {
+    createSummaryComponent: createSummaryComponent,
+    createTimelineComponent: createTimelineComponent
+  };
+})();
+
 var DecipherParser = (function() {
 
   let requestInfo = function(callback) {
