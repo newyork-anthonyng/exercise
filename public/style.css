@@ -31,3 +31,8 @@ table, th, td {
 th, td {
 	padding: 1em 0.5em 0.5em 0.25em;
 }
+
+.container.timeline div,
+.container.positions div {
+	margin: 5em auto;
+}

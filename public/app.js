@@ -40,11 +40,37 @@ var DecipherDom = (function() {
         datasets: [
           {
             label: 'Realized',
-            data: realized
+            data: realized,
+            fill: false,
+            backgroundColor: "rgba(75, 255, 91, 0.5)",
+            borderColor: "rgba(75, 255, 91, 1)",
+            borderWidth: 0.5,
+            pointBorderColor: "rgba(0, 0, 0, 0)",
+            pointBackgroundColor: "rgba(0, 0, 0, 0)",
+            pointBorderWidth: 0,
+            pointHoverRadius: 0,
+            pointHoverBackgroundColor: "rgba(0, 0, 0, 0)",
+            pointHoverBorderColor: "rgba(0, 0, 0, 0)",
+            pointHoverBorderWidth: 0,
+            pointRadius: 0,
+            pointHitRadius: 0
           },
           {
             label: 'Unrealized',
-            data: unrealized
+            data: unrealized,
+            fill: false,
+            backgroundColor: "rgba(22, 192, 255, 0.5)",
+            borderColor: "rgba(22, 192, 255, 1)",
+            borderWidth: 0.5,
+            pointBorderColor: "rgba(0, 0, 0, 0)",
+            pointBackgroundColor: "rgba(0, 0, 0, 0)",
+            pointBorderWidth: 0,
+            pointHoverRadius: 0,
+            pointHoverBackgroundColor: "rgba(0, 0, 0, 0)",
+            pointHoverBorderColor: "rgba(0, 0, 0, 0)",
+            pointHoverBorderWidth: 0,
+            pointRadius: 0,
+            pointHitRadius: 0
           }
         ]
       }
