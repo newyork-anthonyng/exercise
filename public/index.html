@@ -12,66 +12,72 @@
 </head>
 <body>
   <!-- Account Summary -->
-  <div class="container summary">
-    <h1>Account Summary</h1>
-    <table>
-      <tr id="summary_cash">
-        <td>Available Cash</td>
-        <td></td>
-      </tr>
-      <tr id="summary_profit_month">
-        <td>Profit (Month)</td>
-        <td></td>
-      </tr>
-      <tr id="summary_profit_year">
-        <td>Profit (Year)</td>
-        <td></td>
-      </tr>
-      <tr id="summary_profit_all_time">
-        <td>Profit (All Time)</td>
-        <td></td>
-      </tr>
-      <tr id="summary_fees">
-        <td>Fees</td>
-        <td></td>
-      </tr>
-    </table>
-  </div>
+  <section>
+    <div class="container summary">
+      <h1>Account Summary</h1>
+      <table>
+        <tr id="summary_cash">
+          <td>Available Cash</td>
+          <td></td>
+        </tr>
+        <tr id="summary_profit_month">
+          <td>Profit (Month)</td>
+          <td></td>
+        </tr>
+        <tr id="summary_profit_year">
+          <td>Profit (Year)</td>
+          <td></td>
+        </tr>
+        <tr id="summary_profit_all_time">
+          <td>Profit (All Time)</td>
+          <td></td>
+        </tr>
+        <tr id="summary_fees">
+          <td>Fees</td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </section>
 
   <!-- Timeline -->
-  <div class="container timeline">
-    <h1>Timeline</h1>
-    <h2 id="date">Date Range</h2>
+  <section>
+    <div class="container timeline">
+      <h1>Timeline</h1>
+      <h2 id="date">Date Range</h2>
 
-    <div>
-      <canvas id="timelineChart"></canvas>
+      <div>
+        <canvas id="timelineChart"></canvas>
+      </div>
     </div>
-  </div>
+  </section>
 
   <!-- Positions -->
-  <div class="container positions">
-    <h1>Positions</h1>
+  <section>
+    <div class="container positions">
+      <h1>Positions</h1>
 
-    <div>
-      <canvas id="positionsChart"></canvas>
+      <div>
+        <canvas id="positionsChart"></canvas>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Value</th>
+            <th>Realized</th>
+            <th>Dividends</th>
+            <th>Unrealized</th>
+            <th>Short Term</th>
+            <th>Long Term</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Shares</th>
-          <th>Value</th>
-          <th>Realized</th>
-          <th>Dividends</th>
-          <th>Unrealized</th>
-          <th>Short Term</th>
-          <th>Long Term</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+  </section>
 
   <script type="application/javascript" src="./libraries/chart.js"></script>
   <script type="application/javascript" src="./app.js"></script>
