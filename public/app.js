@@ -53,9 +53,35 @@ var DecipherDom = (function() {
     });
   }
 
+  let createPositionComponent = function(data) {
+    // populate Chart
+    let $chart = $('#positionsChart');
+    let ticker = getArrayOfKey(data, 'ticker');
+    let value = getArrayOfKey(data, 'value');
+
+
+    let myChart = new Chart($chart, {
+      type: 'pie',
+      data: {
+        labels: ticker,
+        datasets: [
+          {
+            data: value,
+            backgroundColor: [
+              '#567', '#567', '#567', '#567'
+            ]
+          }
+        ]
+      }
+    });
+
+    // populate Table
+  }
+
   return {
     createSummaryComponent: createSummaryComponent,
-    createTimelineComponent: createTimelineComponent
+    createTimelineComponent: createTimelineComponent,
+    createPositionComponent: createPositionComponent
   };
 })();
 
